@@ -1,0 +1,68 @@
+{
+  "name": "app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "npx cross-env NODE_ENV=development vue-cli-service serve",
+    "build": "npx cross-env NODE_ENV=production vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "local:http": "cd ./dist && npx http-server",
+    "local:https": "cd ./dist && npx http-server -S -C cert.pem",
+    "deploy-firebase-hosting": "firebase deploy --only hosting",
+    "deploy": "firebase use default && npm run build && npm run deploy-firebase-hosting",
+    "deploy:staging": "firebase use ce-staging-ae480 && npm run build && npm run deploy-firebase-hosting"
+  },
+  "dependencies": {
+    "@stripe/stripe-js": "^1.9.0",
+    "algoliasearch": "^4.2.0",
+    "core-js": "^3.6.5",
+    "fetch-with-fire": "^1.5.1",
+    "firebase": "^7.23.0",
+    "instantsearch.css": "^7.4.5",
+    "lodash.clonedeep": "^4.5.0",
+    "moment": "^2.29.1",
+    "register-service-worker": "^1.7.1",
+    "unixseconds": "^0.1.0",
+    "vue": "^2.6.12",
+    "vue-error-controller": "^0.3.1",
+    "vue-instantsearch": "^2.7.0",
+    "vue-loader-controller": "^0.1.0",
+    "vue-observe-visibility": "^0.4.6",
+    "vue-router": "^3.4.6",
+    "vuetify": "^2.3.13",
+    "vuex": "^3.5.1",
+    "vuex-persistedstate": "^3.1.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^4.5.7",
+    "@vue/cli-plugin-eslint": "^4.5.7",
+    "@vue/cli-plugin-pwa": "^4.5.7",
+    "@vue/cli-service": "^4.5.7",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "babel-eslint": "^10.1.0",
+    "cross-env": "^7.0.2",
+    "eslint": "^7.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-vue": "^7.0.1",
+    "husky": "^4.3.0",
+    "ignore-loader": "^0.1.2",
+    "lint-staged": "^10.4.0",
+    "prettier": "^2.1.2",
+    "sass": "^1.27.0",
+    "sass-loader": "^10.0.3",
+    "vue-cli-plugin-vuetify": "^2.0.7",
+    "vue-template-compiler": "^2.6.12",
+    "vuetify-loader": "^1.6.0",
+    "webpack": "^4.44.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,vue}": [
+      "vue-cli-service lint"
+    ]
+  }
+}
